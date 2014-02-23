@@ -1,6 +1,6 @@
 var Puppets = require("./libs/puppets");
 var requestAnimationFrame = require("./libs/requestAnimationFrame");
-var EasyInputs = require("./libs/EasyInputs");
+var EasyInputs = require("./libs/EasyInput");
 (function(undefined){
     new Puppets(); //instantiate Puppets
 
