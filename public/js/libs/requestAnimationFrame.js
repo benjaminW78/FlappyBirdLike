@@ -1,4 +1,5 @@
-window.requestAnimFrame = (function(){
+
+var requestAnimFrame = (function(){
     return  window.requestAnimationFrame       ||
         window.webkitRequestAnimationFrame ||
         window.mozRequestAnimationFrame    ||
@@ -6,3 +7,5 @@ window.requestAnimFrame = (function(){
             window.setTimeout(callback, 1000 / 60);
         };
 })();
+
+module.exports = requestAnimFrame;

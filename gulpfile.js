@@ -56,7 +56,7 @@ gulp.task('lint', function() {
 gulp.task('browserify', function() {
     return gulp.src(pathFromJs+'/js/main.js')
         .pipe(browserify({
-          insertGlobals : false}))
+          insertGlobals : false,debug : !gulp.env.production}))
         .pipe(gulp.dest('./build/sources/js'))
         .pipe(livereload(server));
 });
@@ -84,7 +84,7 @@ gulp.task('ConstructCss',function(){
 // Default Task
 gulp.task('default', ['insertVar', 'lint','browserify',"ConstructHtml","ConstructCss"],function(){
   // Open Google Chrome @ localhost:8080
-  gulp.src('./build/index.html')
+  gulp.src('build/index.html')
     .pipe(open("",{
       // app:"google-chrome",
       app:"/usr/lib/chromium-browser/chromium-browser",

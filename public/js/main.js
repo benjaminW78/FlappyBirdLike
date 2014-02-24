@@ -1,10 +1,8 @@
-var Puppets = require("./libs/puppets");
-var requestAnimationFrame = require("./libs/requestAnimationFrame");
-var EasyInputs = require("./libs/EasyInput");
-(function(undefined){
-    new Puppets(); //instantiate Puppets
-
-	new EasyInputs();
+window.onload = function(){
+    
+var Game = require('./loader/game');
+console.log(Game);
+}
         // Puppets.component("position2d", function(data, entity){
         //       return {x : data.x || 0, y : data.y || 0 };
         // });//add component position2d;
@@ -23,8 +21,7 @@ var EasyInputs = require("./libs/EasyInput");
 
         // setInterval(function(){
   
-             Puppets.run();
+             // PuppetsInstance.run();
         // }, 1000);
         /* each second, Puppets plays its system list. So each second, the position2d of our entity will       
            change. */
-})();

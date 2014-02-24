@@ -1,4 +1,4 @@
-var Puppets = function (config)
+Puppets = function (config)
 {
     this.ARRAY = [];
     this.Systems =
@@ -605,3 +605,5 @@ Puppets.prototype.systemList = function(list)
 
     return this.Systems.order;
 };
+
+module.exports = Puppets;

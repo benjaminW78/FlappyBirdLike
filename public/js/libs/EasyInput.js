@@ -1,33 +1,8 @@
-/*create by : winckell benjamin*/
-
-/*exemples de fonctions appelez aux events*/
-function usedOnMouseDown()
-{
-    console.log("mousedow");
-}
-function usedOnMouseUp()
-{
-    console.log("mouseUp");
-}
-function usedOnMouseMove(e)
-{
-    console.log("mouseMove");
-}
-
-
-/* array of keys who are catched by events*/
-var keyBind ={
-                0 : {
-                        mousedown : usedOnMouseDown,
-                        mouseup : usedOnMouseUp,
-                        mousemove : usedOnMouseMove
-                    },
-                87: {keydown: function(){console.log("Down");}, keyup: function(){console.log("Up");},keypress: function(){console.log("press");}}
-            };
+// create by : winckell benjamin
 /*
 *class of input event gestion.
 *this lib can be use for manage simples inputs with multi events
-*Need to be instanciate in object in init of your game.
+*Need to be instanciate in init of your game.
 
 *HOW TO BIND A EVENT TO A INPUT:
 *   Add in your array keyBind like That :  var keyBind = { KeyNumberOfInput :  { eventToCall : functionToActive() } }
@@ -53,7 +28,7 @@ var keyBind ={
 *   getKeysBind() 
     use : return you object who contain all keys binding and all events call for those keys.
 */
-var EasyInput = function(object)
+var EasyInput = function()
 {
     var key = {};
     var DictonnaryKey =  {
@@ -154,23 +129,21 @@ var EasyInput = function(object)
         225: "alt",
         57392: "ctrl",
         63289: "num"
-      };
-    Input.prototype.addEvent = function(input , target)
+    };
+    EasyInput.prototype.addEvent = function(input , target)
     {   
         target.addEventListener(input, this.functionCall,false);
     };
-    Input.prototype.functionCall = function(e)
+    EasyInput.prototype.functionCall = function(e)
     {
         if(key.hasOwnProperty(e.keyCode) && typeof key[e.keyCode][e.type] === "function")
             key[e.keyCode][e.type](e);
-        else
-            console.log("key["+e.keyCode+"] est undefined ou key["+e.keyCode+"]["+e.type+"] n'est pas une fonction");   
     };
-    Input.prototype.removeEvent = function(input , target)
+    EasyInput.prototype.removeEvent = function(input , target)
     {
         target.removeEventListener(input,this.functionCall,false);
     };
-    Input.prototype.setKeyBind = function(submittedKey , object)
+    EasyInput.prototype.setKeyBind = function(submittedKey , object)
     {
         if(key.hasOwnProperty(submittedKey) === false)
         {
@@ -187,13 +160,22 @@ var EasyInput = function(object)
             for (var index in object)
                 key[submittedKey][index] = object[index]; 
         } 
-    }
-    Input.prototype.getKeysBind = function()
+    };
+    EasyInput.prototype.getKeysBind = function()
     {
         return key;
-    }
-    Input.prototype.findInKey = function(submittedKey){
-        console.log(DictonnaryKey.indexOf(submittedKey));
-        return DictonnaryKey.indexOf(submittedKey);
-    }
-}
+    };
+    EasyInput.prototype.findInKey = function(submittedKey){
+        var index = -1;
+        var i;
+        for( i in DictonnaryKey) {
+            if (DictonnaryKey[i] === submittedKey) {
+                index = i;    
+                break;
+            }
+        }
+        return index;
+    };
+};
+
+module.exports = EasyInput;
