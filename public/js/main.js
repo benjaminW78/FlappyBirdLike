@@ -1,7 +1,14 @@
 window.onload = function(){
-    
-var Game = require('./loader/game');
-console.log(Game);
+
+    var Game = require('./loader/game');
+    var requestAnimFrame = require('./libs/requestAnimationFrame');
+
+    console.log(requestAnimFrame);
+    (function gameloop(){            
+            Game.Puppets.run();
+            requestAnimFrame(gameloop);
+    })();
+
 }
         // Puppets.component("position2d", function(data, entity){
         //       return {x : data.x || 0, y : data.y || 0 };
