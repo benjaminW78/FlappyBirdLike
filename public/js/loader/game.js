@@ -22,7 +22,7 @@ console.log(Game.Inputs.getKeysBind());
 // create entities 
 
 // instantiate player entity
-Puppets.createEntity('player',{position:{x:150, y:100 , angle : 45}, size:{w: 100 , h: 80} ,render:{ctx: Game.ctx} });
+Puppets.createEntity('player',{position:{x:150, y:100 , angle : 0}, size:{w: 100 , h: 80} ,render:{ctx: Game.ctx} });
 
 
 // export browserify 
