@@ -30,7 +30,8 @@ var server = tinylr();
 server.listen(35729, function (err) {
       if (err) return console.log(err);
 
-      
+gulp.task("Rewatch",function(){
+
     gulp.watch([
                 "./"+pathFromJs+'/js/**/*.js',
                 './views/**/*.html',
@@ -44,6 +45,7 @@ server.listen(35729, function (err) {
                     
                 });      
     });
+}); 
 
 // Lint Task
 gulp.task('lint', function() {
@@ -59,6 +61,7 @@ gulp.task('browserify', function() {
           insertGlobals : false,debug : !gulp.env.production}))
         .pipe(gulp.dest('./build/sources/js'))
         .pipe(livereload(server));
+        gulp.start('Rewatch');
 });
 
 // Watch Files For Changes
@@ -82,7 +85,7 @@ gulp.task('ConstructCss',function(){
 });
 
 // Default Task
-gulp.task('default', ['insertVar', 'lint','browserify',"ConstructHtml","ConstructCss"],function(){
+gulp.task('default', ['Rewatch','insertVar', 'lint','browserify',"ConstructHtml","ConstructCss"],function(){
   // Open Google Chrome @ localhost:8080
   gulp.src('build/index.html')
     .pipe(open("",{

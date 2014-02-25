@@ -456,7 +456,7 @@ Puppets = function (config)
 Puppets.prototype.run = function()
 {
     this.Systems.launchSystems();
-}
+};
 
 Puppets.prototype.find = function(clue, aplane)
 {
@@ -606,4 +606,4 @@ Puppets.prototype.systemList = function(list)
     return this.Systems.order;
 };
 
-module.exports = Puppets;
+module.exports = new Puppets();
