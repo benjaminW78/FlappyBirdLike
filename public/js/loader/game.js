@@ -16,7 +16,7 @@ var Game = {
 				eventController  : moduleEventController
 			};
 
-Game.Puppets.systemList(["clearCanvas","draw"]);
+Game.Puppets.systemList(["draw"]);
 
 // add of input controls
 Game.Inputs.addEvent("keydown", window);

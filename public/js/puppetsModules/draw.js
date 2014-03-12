@@ -1,25 +1,6 @@
 var Puppets = require("../libs/puppets");
 var canvasConf = require("../modules/configCanvas");
 
-Puppets.entity('clearCanvas',{components : ['render']});
-
-Puppets.createEntity('clearCanvas',{render:{ctx: canvasConf.ctx , fill : "#ffffff"} });
-
-Puppets.system("clearCanvas",function(render){
-
-    
-    if(render.shape === ""){    
-    var fillcolor = render.Fillcolor,
-        ctx       = render.ctx ;  
-        ctx.fillStyle = fillcolor;
-    
-        ctx.beginPath();   
-        ctx.fillRect(0, 0, canvasConf.domCanvas.width,canvasConf.domCanvas.height);
-        ctx.closePath();
-    }
-
-},{components : ['render']});
-
 // puppet System Draw 
 Puppets.system("draw",function(position,render,size){
     if(render.ctx !== undefined)
@@ -38,7 +19,8 @@ Puppets.system("draw",function(position,render,size){
                 ctx.fillStyle=fillcolor;
             if(strokecolor!==undefined)
                 ctx.strokeStyle=strokecolor;
-    
+        ctx.clearRect(0, 0, canvasConf.domCanvas.width,canvasConf.domCanvas.height);
+            console.log(fillcolor);
             ctx.beginPath();
             // mise en place de l'angle
             ctx.save();
@@ -52,8 +34,6 @@ Puppets.system("draw",function(position,render,size){
             ctx.restore();
             // on arrete de dessiner
             ctx.closePath();
-            ctx.fill();
-
     }   
 },{components : ['position','render','size']});
 
