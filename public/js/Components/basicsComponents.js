@@ -6,7 +6,7 @@ Puppets.component("position",function(data,entity,undefined){
 
 Puppets.component("render",function(data,entity,undefined){
     return { ctx : data.ctx ,Fillcolor : data.fill || "#22ff33" , Strokecolor : data.stroke || "" , 
-             shape : data.shape || 'square'};
+             shape : data.shape || ''};
 });
 
 Puppets.component("size",function(data,entity,undefined){
