@@ -1,4 +1,6 @@
 .tto{
 	z-index: 0;
-
+}
+canvas{
+	background-color:red;
 }

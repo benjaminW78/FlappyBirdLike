@@ -4,7 +4,7 @@ var moduleEventController = require("../puppetsModules/EventController");
 
 // entity move smooth for player;
 Puppets.component("move",function(data,entity,undefined){
-    return { timer: 0,value : data.value || 0,diviseur : data.diviseur || 2 ,direction : data.direction || 1};
+    return { timer: 0,value : data.value || 0,diviseur : data.diviseur || 2 ,direction : data.direction || 5};
 });
 
 Puppets.component("clock",function(data,entity,undefined){
@@ -21,21 +21,24 @@ Puppets.system("move-forward",function(position,speed,move){
         _diviseur  = move.diviseur;
         move.timer+=1;
         if(move.value>0){
-            position.y-=2*_diviseur;
-            move.value-=0.2/_diviseur;  
+            
+            if(_speed<0)
+                position.x-=2*_diviseur;
+            else if(_speed>0)
+                position.x+=2*_diviseur;
+
+            position.y-=3*_diviseur;
+            move.value-=0.1/_diviseur;  
         }
         // console.log(_speed*Math.cos(position.angle),_speed,position.angle)
         if(position.angle==90 || position.angle==-90)
             speed.value*=-1;
-        
-        var toto = 0.5;
-        if(move.timer%60<=50)
-            toto = 0.5;
-        position.x += _speed*toto*Math.cos(position.angle*Math.PI / 180);
-        position.y += _speed*toto*Math.sin(position.angle*Math.PI / 180);
-
         if(position.angle==90 || position.angle==-90)
             move.direction*=-1
+        
+        position.x += _speed*Math.cos(position.angle*Math.PI / 180);
+        position.y += _speed*Math.sin(position.angle*Math.PI / 180);
+
 
         position.angle+=move.direction;
 
@@ -57,8 +60,8 @@ Puppets.system("move-forward",function(position,speed,move){
 // },{components : ['position','speed','move']});
 
 var PlayerController = function (){
-    var params = { x:250, y:200/2, angle:50, width : 20, height : 20  , shape : "square", ctx : canvasConf.ctx, smoothX:0,smoothY:0};
-
+    console.log(canvasConf.domCanvas.width,canvasConf.domCanvas.width/2, Math.sin(canvasConf.domCanvas.height))
+    var params = { x:canvasConf.domCanvas.width/2, y:canvasConf.domCanvas.height/2, angle:50, width : 20, height : 20  , shape : "square", ctx : canvasConf.ctx, smoothX:0,smoothY:0};
     this.init(params);
 };
 

@@ -14,7 +14,7 @@ Puppets.component("size",function(data,entity,undefined){
 });
 
 Puppets.component("speed",function(data,entity,undefined){
-    return { value : data.value || 2 };
+    return { value : data.value || 5 };
 });
 
 
