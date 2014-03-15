@@ -4,7 +4,7 @@ var moduleEventController = require("../puppetsModules/EventController");
 
 // entity move smooth for player;
 Puppets.component("move",function(data,entity,undefined){
-    return { timer: 0,value : data.value || 0,diviseur : data.diviseur || 2 ,direction : data.direction || 5};
+    return {value:data.value||0, diviseur : data.diviseur || 2,direction : data.direction || 5};
 });
 
 Puppets.component("clock",function(data,entity,undefined){
@@ -19,8 +19,8 @@ Puppets.system("move-forward",function(position,speed,move){
         var _speed = speed.value,
         _move      = move.value;
         _diviseur  = move.diviseur;
-        move.timer+=1;
-        if(move.value>0){
+       
+        if(_move>0){
             
             if(_speed<0)
                 position.x-=2*_diviseur;
@@ -30,20 +30,20 @@ Puppets.system("move-forward",function(position,speed,move){
             position.y-=3*_diviseur;
             move.value-=0.1/_diviseur;  
         }
-        // console.log(_speed*Math.cos(position.angle),_speed,position.angle)
-        if(position.angle==90 || position.angle==-90)
-            speed.value*=-1;
-        if(position.angle==90 || position.angle==-90)
-            move.direction*=-1
-        
-        position.x += _speed*Math.cos(position.angle*Math.PI / 180);
-        position.y += _speed*Math.sin(position.angle*Math.PI / 180);
+        else{
+            if(position.angle==90 || position.angle==-90)
+            {   
+                speed.value*=-1;
+                move.direction*=-1;
+            }
 
+            if(Math.sin(position.angle*Math.PI / 180)!==1&&Math.sin(position.angle*Math.PI / 180)!==-1)
+                position.y += _speed*Math.sin(position.angle*Math.PI / 180);
+    
+            position.x += _speed*Math.cos(position.angle*Math.PI / 180);
 
-        position.angle+=move.direction;
-
-        // console.log(position.angle)
-
+            position.angle+= move.direction;
+        }
 
 },{components : ['position','speed','move']});
 // // system to move automaticaly player by sinus and cosinus
@@ -60,8 +60,8 @@ Puppets.system("move-forward",function(position,speed,move){
 // },{components : ['position','speed','move']});
 
 var PlayerController = function (){
-    console.log(canvasConf.domCanvas.width,canvasConf.domCanvas.width/2, Math.sin(canvasConf.domCanvas.height))
-    var params = { x:canvasConf.domCanvas.width/2, y:canvasConf.domCanvas.height/2, angle:50, width : 20, height : 20  , shape : "square", ctx : canvasConf.ctx, smoothX:0,smoothY:0};
+    console.log(canvasConf.domCanvas.width,canvasConf.domCanvas.width/2, Math.sin(canvasConf.domCanvas.height));
+    var params = { x:canvasConf.domCanvas.width/2, y:256, angle:50, width : 20, height : 20  , shape : "square", ctx : canvasConf.ctx, smoothX:0,smoothY:0};
     this.init(params);
 };
 
