@@ -3,6 +3,7 @@ var Puppets               = require("../libs/puppets");
 var EasyInputs            = require("../libs/EasyInput");
 var canvasConf            = require("../modules/configCanvas");
 var modulePlayer          = require("../puppetsModules/Player");
+var modulebloc	          = require("../puppetsModules/blocPattern");
 var moduleEventController = require("../puppetsModules/EventController");
 var moduleDraw            = require("../puppetsModules/draw");
 // do something

@@ -2,30 +2,24 @@ var basicsComponents      = require("../Components/basicsComponents");
 var canvasConf            = require("../modules/configCanvas");
 var moduleEventController = require("../puppetsModules/EventController");
 
-// entity move smooth for player;
+// component move smooth for player;
 Puppets.component("move",function(data,entity,undefined){
-    return {value:data.value||0, diviseur : data.diviseur || 2,direction : data.direction || 5};
+    return {value:data.value||0, diviseur : data.diviseur || 1.5,direction : data.direction || 5};
 });
-
-Puppets.component("clock",function(data,entity,undefined){
-    return { value : data.value || 2 };
-});
-// model use for player entity
 
 Puppets.entity('player',{components : ['position','render','size','speed','move']});
 
-// system use to go forward.
+// system use to move player.
 Puppets.system("move-forward",function(position,speed,move){
         var _speed = speed.value,
         _move      = move.value;
         _diviseur  = move.diviseur;
        
         if(_move>0){
-            
             if(_speed<0)
-                position.x-=2*_diviseur;
+                position.x-=_speed*Math.sin(position.angle*Math.PI / 180)*_diviseur;
             else if(_speed>0)
-                position.x+=2*_diviseur;
+                position.x+=_speed*Math.sin(position.angle*Math.PI / 180)*_diviseur;
 
             position.y-=3*_diviseur;
             move.value-=0.1/_diviseur;  
@@ -44,20 +38,8 @@ Puppets.system("move-forward",function(position,speed,move){
 
             position.angle+= move.direction;
         }
-
+        
 },{components : ['position','speed','move']});
-// // system to move automaticaly player by sinus and cosinus
-// Puppets.system("move-auto",function(position,speed,move){
-//     var _speed = speed.value,
-//      _move = move.value;
-//      _diviseur = move.diviseur;
-
-//      if(move.value>0){
-//          position.y+=_speed/_diviseur;
-//          move.value-=0.2/_diviseur;  
-//      }
-//     ;
-// },{components : ['position','speed','move']});
 
 var PlayerController = function (){
     console.log(canvasConf.domCanvas.width,canvasConf.domCanvas.width/2, Math.sin(canvasConf.domCanvas.height));
