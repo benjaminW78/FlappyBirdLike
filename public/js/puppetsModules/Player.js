@@ -1,13 +1,14 @@
 var basicsComponents      = require("../Components/basicsComponents");
 var canvasConf            = require("../modules/configCanvas");
-var moduleEventController = require("../puppetsModules/EventController");
+var moduleEventController = require("../modules/EventController");
+var basic                 =  require("../modules/basicMethodes");
 
 // component move smooth for player;
 Puppets.component("move",function(data,entity,undefined){
     return {value:data.value||0, diviseur : data.diviseur || 1.5,direction : data.direction || 5};
 });
 
-Puppets.entity('player',{components : ['position','render','size','speed','move']});
+Puppets.entity('player',{components : ['position','render','size','speed','move','collider',"polygone"]});
 
 // system use to move player.
 Puppets.system("move-forward",function(position,speed,move){
@@ -42,18 +43,27 @@ Puppets.system("move-forward",function(position,speed,move){
 },{components : ['position','speed','move']});
 
 var PlayerController = function (){
-    console.log(canvasConf.domCanvas.width,canvasConf.domCanvas.width/2, Math.sin(canvasConf.domCanvas.height));
-    var params = { x:canvasConf.domCanvas.width/2, y:256, angle:50, width : 20, height : 20  , shape : "square", ctx : canvasConf.ctx, smoothX:0,smoothY:0};
+
+    var params = { x:canvasConf.domCanvas.width/2, y:256, angle:90, width : 20, height : 20  , shape : "square", ctx : canvasConf.ctx, smoothX:0,smoothY:0,type:"player",lines :{}};
+
+    params.lines = basic.computePolygone(params.x,params.y,params.width,params.height,params.angle);
+
     this.init(params);
 };
 
 PlayerController.prototype.init = function(params){
-    this.entityNumber = Puppets.createEntity('player',{position:{x:params.x, y:params.y , angle : params.angle}, size:{w: params.width , h: params.height} ,render:{ctx: params.ctx,shape : params.shape},move:{} });
+
+    this.entityNumber = Puppets.createEntity('player',{position:{x:params.x, y:params.y , angle : params.angle},
+                                                        size     :{w: params.width , h: params.height},
+                                                        render   :{ctx: params.ctx,shape : params.shape},
+                                                        collider :{type:params.type},
+                                                        polygone :{lines:params.lines}});
 
     this.setEvents();
 };
 
 PlayerController.prototype.setEvents = function(){
+
     moduleEventController.add("go-forward",function(){  
         var _self = Puppets.getComponents(this.entityNumber)[0];
         _self.move.value +=1; 

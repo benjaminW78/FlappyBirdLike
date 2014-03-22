@@ -17,4 +17,12 @@ Puppets.component("speed",function(data,entity,undefined){
     return { value : data.value || 5 };
 });
 
+Puppets.component("collider",function(data,entity,undefined){
+    return { type : data.type || "block"};
+});
+
+Puppets.component("polygone",function(data,entity,undefined){
+    return { lines : data.lines};
+});
+
 module.exports = this; 
