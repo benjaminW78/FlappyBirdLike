@@ -24,6 +24,7 @@ var Game = {
 
 // add of input controls
 Game.Inputs.addEvent("keydown", window);
+Game.Inputs.addEvent("touch", window);
 Game.Inputs.setKeyBind('left',{"keydown":function (){Game.eventController.emit("go-forward");}});
 
 // console.log(Game.Inputs.getKeysBind());

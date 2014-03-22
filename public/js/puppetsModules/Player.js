@@ -5,7 +5,7 @@ var basic                 =  require("../modules/basicMethodes");
 
 // component move smooth for player;
 Puppets.component("move",function(data,entity,undefined){
-    return {value:data.value||0, diviseur : data.diviseur || 1.5,direction : data.direction || 5};
+    return {value:data.value||0, diviseur : data.diviseur || 2,direction : data.direction || 2};
 });
 
 Puppets.entity('player',{components : ['position','render','size','speed','move','collider',"polygone"]});
@@ -23,7 +23,7 @@ Puppets.system("move-forward",function(position,speed,move){
                 position.x+=_speed*Math.sin(position.angle*Math.PI / 180)*_diviseur;
 
             position.y-=3*_diviseur;
-            move.value-=0.1/_diviseur;  
+            move.value-=0.15/_diviseur;  
         }
         else{
             if(position.angle==90 || position.angle==-90)
@@ -44,7 +44,7 @@ Puppets.system("move-forward",function(position,speed,move){
 
 var PlayerController = function (){
 
-    var params = { x:canvasConf.domCanvas.width/2, y:256, angle:90, width : 20, height : 20  , shape : "square", ctx : canvasConf.ctx, smoothX:0,smoothY:0,type:"player",lines :{}};
+    var params = { x:canvasConf.domCanvas.width/2, y:256, angle:0, width : 25, height : 25  , shape : "square", ctx : canvasConf.ctx, smoothX:0,smoothY:0,type:"player",lines :{}};
 
     params.lines = basic.computePolygone(params.x,params.y,params.width,params.height,params.angle);
 
@@ -61,13 +61,14 @@ PlayerController.prototype.init = function(params){
     var entitys = Puppets.find('collider');
     var othersComponents = [];
     entitys.forEach(function(element,index,array){
+        
         var _myEntity = Puppets.getComponents(element)[0];
         if(_myEntity.collider.type !== 'player'){
             for (var i in _myEntity.polygone.lines){
                 othersComponents.push(_myEntity.polygone.lines[i]);
             } 
-            console.log(_myEntity.polygone.lines);
         }
+    
     });
 
     
@@ -76,7 +77,7 @@ PlayerController.prototype.init = function(params){
     });
 
     Puppets.addComponent(this.entityNumber,'others',{others : othersComponents});
-    console.log(Puppets.getComponents(this.entityNumber)[0].others);
+
     this.setEvents();
 };
 

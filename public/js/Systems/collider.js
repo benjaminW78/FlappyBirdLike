@@ -24,23 +24,18 @@ Puppets.system("collider",function(position,collider,size,others,polygone){
                         var _otherLine1x = others.lines[i].a.x,
                             _otherLine1y = others.lines[i].a.y,
                             _otherLine2x = others.lines[i].b.x,
-                            _otherLine2y = others.lines[i].b.y
-            // test if lines are paralles if they are  test =  0.
-            testParalle=((_playerLine2y - _playerLine1y)* (_otherLine2x - _otherLine1x)) - ((_playerLine2x - _playerLine1x)*(_otherLine2y- _otherLine1y));
+                            _otherLine2y = others.lines[i].b.y;
+                            // test if lines are paralles if they are  test =  0.
+                            testParalle=((_playerLine2y - _playerLine1y)* (_otherLine2x - _otherLine1x)) - ((_playerLine2x - _playerLine1x)*(_otherLine2y- _otherLine1y));
 
-            var testCrossLineToLine = (((_playerLine2x-_playerLine1x)*(_otherLine1y- _playerLine1y))-((_playerLine2y-_playerLine1y)*(_otherLine1x- _playerLine1x)))/testParalle;
-                        console.log(testCrossLineToLine);
-                        // debugger
-                        if(testCrossLineToLine<0 || testCrossLineToLine>1)
-                        {
-
+                            var testCrossLineToLineA = (((_playerLine2x-_playerLine1x)*(_otherLine1y- _playerLine1y))-((_playerLine2y-_playerLine1y)*(_otherLine1x- _playerLine1x)))/testParalle;
+                            var testCrossLineToLineB = (((_otherLine2x-_otherLine1x) * (_otherLine1y - _playerLine1y))-((_otherLine2y - _otherLine1y) * (_otherLine1x - _playerLine1x))) / testParalle;
+                        if ((testCrossLineToLineA < 0) || (testCrossLineToLineA > 1) || (testCrossLineToLineB < 0) || (testCrossLineToLineB > 1)){
                             // console.log("yolo ca ce croise pas !");
-                            console.log("MOTHEUUUUUR FUCKER SISI");
                         }
                         else {
-                            debugger;
+                            // console.log("MOTHEUUUUUR FUCKER SISI");
                         }                            
-
                      }
                 // polygone.lines[i].
             }
