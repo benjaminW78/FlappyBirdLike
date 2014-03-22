@@ -8,53 +8,28 @@ Puppets.system("polygoneUpdate",function(position,size,polygone){
             angle       = position.angle,
             width       = size.width,
             height      = size.height;
-    // 
-    // 
-    // 
-    // 
-    // 
-    // 
-    // 
-    // 
-            // console.log(angle);
-   // console.log(angle,polygone.lines.lineTop.a);
-   debugger;
-    // polygone.lines.lineTop = {a:{x:Math.cos(angle*Math.PI / 180)+(x+(width*-1)/2)
-    // y:Math.sin(angle*Math.PI / 180)*1.5+(y+(height*-1)/2)}
+
+
     polygone.lines.lineTop.a.x = Math.cos(angle*Math.PI / 180)*((x+(width*-1)/2)-x) - Math.sin(angle*Math.PI / 180) * ((y+(height*-1)/2)-y)+x;
     polygone.lines.lineTop.a.y = Math.sin(angle*Math.PI / 180)*((x+(width*-1)/2)-x) + Math.cos(angle*Math.PI / 180)* ((y+(height*-1)/2)-y)+y;
-    // b:{x:Math.cos(angle*Math.PI / 180)+(x+width/2)
-    // y:Math.sin(angle*Math.PI / 180)*1.5+(y+(height*-1)/2)}};
     polygone.lines.lineTop.b.x = Math.cos(angle*Math.PI / 180)*((x+width/2)-x) - Math.sin(angle*Math.PI / 180) * ((y+(height*-1)/2)-y)+x;
     polygone.lines.lineTop.b.y = Math.sin(angle*Math.PI / 180)*((x+width/2)-x) + Math.cos(angle*Math.PI / 180)* ((y+(height*-1)/2)-y)+y;
                     
-    // polygone.lines.lineLeft = {a:{x:Math.cos(angle*Math.PI / 180)+(x+(width*-1)/2)
-    // y:Math.sin(angle*Math.PI / 180)*1.5+(y+(height*-1)/2)}
     polygone.lines.lineLeft.a.x = Math.cos(angle*Math.PI / 180)*((x+(width*-1)/2)-x) - Math.sin(angle*Math.PI / 180) * ((y+(height*-1)/2)-y)+x;
     polygone.lines.lineLeft.a.y = Math.sin(angle*Math.PI / 180)*((x+(width*-1)/2)-x) + Math.cos(angle*Math.PI / 180)* ((y+(height*-1)/2)-y)+y;
-    // b:{x:Math.cos(angle*Math.PI / 180)+(x+(width*-1)/2)
-    // y:Math.sin(angle*Math.PI / 180)*1.5+(y+height/2)}};
     polygone.lines.lineLeft.b.x = Math.cos(angle*Math.PI / 180)*((x+(width*-1)/2)-x) - Math.sin(angle*Math.PI / 180) * ((y+height/2)-y)+x;
     polygone.lines.lineLeft.b.y = Math.sin(angle*Math.PI / 180)*((x+(width*-1)/2)-x) + Math.cos(angle*Math.PI / 180)* ((y+height/2)-y)+y;
 
-    // polygone.lines.lineRight = {a:{x:Math.cos(angle*Math.PI / 180)+(x+width/2)
-    // y:Math.sin(angle*Math.PI / 180)*1.5+(y+(height*-1)/2)}
     polygone.lines.lineRight.a.x = Math.cos(angle*Math.PI / 180)*((x+width/2)-x) - Math.sin(angle*Math.PI / 180) * ((y+(height*-1)/2)-y)+x;
     polygone.lines.lineRight.a.y = Math.sin(angle*Math.PI / 180)*((x+width/2)-x) + Math.cos(angle*Math.PI / 180)* ((y+(height*-1)/2)-y)+y;
-    // b:{x:Math.cos(angle*Math.PI / 180)+(x+width/2)
-    // y:Math.sin(angle*Math.PI / 180)*1.5+(y+height/2)}};
     polygone.lines.lineRight.b.x = Math.cos(angle*Math.PI / 180)*((x+width/2)-x) - Math.sin(angle*Math.PI / 180) * ((y+height/2)-y)+x;
     polygone.lines.lineRight.b.y = Math.sin(angle*Math.PI / 180)*((x+width/2)-x) + Math.cos(angle*Math.PI / 180)* ((y+height/2)-y)+y;
 
     
                   // cos(theta) * (px-ox) - sin(theta) * (py-oy) + ox
-    // polygone.lines.lineBottom = {a:{x:Math.cos(angle*Math.PI / 180)+(x+(width*-1)/2)
-    // y:Math.sin(angle*Math.PI / 180)*1.5+(y+height/2)}
     polygone.lines.lineBottom.a.x = Math.cos(angle*Math.PI / 180)*((x+(width*-1)/2)-x) - Math.sin(angle*Math.PI / 180) * ((y+height/2)-y)+x;
                  // sin(theta) * (px-ox) + cos(theta) * (py-oy) + oy
     polygone.lines.lineBottom.a.y = Math.sin(angle*Math.PI / 180)*((x+(width*-1)/2)-x) + Math.cos(angle*Math.PI / 180)* ((y+height/2)-y)+y;
-    // b:{x:Math.cos(angle*Math.PI / 180)+(x+width/2)
-    // y:Math.sin(angle*Math.PI / 180)*1.5+(y+height/2)}};
     polygone.lines.lineBottom.b.x = Math.cos(angle*Math.PI / 180)*((x+width/2)-x) - Math.sin(angle*Math.PI / 180)* ((y+height/2)-y)+x;
     polygone.lines.lineBottom.b.y = Math.sin(angle*Math.PI / 180)*((x+width/2)-x) + Math.cos(angle*Math.PI / 180)* ((y+height/2)-y)+y;
 

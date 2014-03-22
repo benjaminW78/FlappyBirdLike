@@ -7,10 +7,10 @@ Puppets.entity('bloc1',{components : ['position','render','size','collider',"pol
 
 var blocFactory = function (){
 
-    var params = { x:150, y:200 , angle :   45, width : 50, height : 100  , shape : "square", ctx : canvasConf.ctx, type:"bloc",lines :{},fill :"#ffffff" };
+    var params = { x:150, y:200 , angle :   90, width : 50, height : 100  , shape : "square", ctx : canvasConf.ctx, type:"bloc",lines :{},fill :"#ffffff" };
 
     params.lines = basic.computePolygone(params.x,params.y,params.width,params.height,params.angle);
-    console.log(params.lines.lineTop.a.x ,"yoPLA");
+    
     this.init(params);
 };
 

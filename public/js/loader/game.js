@@ -3,11 +3,11 @@ var Puppets               = require("../libs/puppets");
 var EasyInputs            = require("../libs/EasyInput");
 var EventController       = require("../modules/EventController");
 var canvasConf            = require("../modules/configCanvas");
-var modulePlayer          = require("../puppetsModules/Player");
 require("../puppetsModules/blocPattern");
 require("../Systems/render");
 require("../Systems/collider");
 require("../Systems/polygoneUpdate");
+var modulePlayer          = require("../puppetsModules/Player");
 
 // do something
 // Game.Puppets.systemList(["draw"]);

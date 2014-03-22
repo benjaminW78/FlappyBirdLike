@@ -58,7 +58,25 @@ PlayerController.prototype.init = function(params){
                                                         render   :{ctx: params.ctx,shape : params.shape},
                                                         collider :{type:params.type},
                                                         polygone :{lines:params.lines}});
+    var entitys = Puppets.find('collider');
+    var othersComponents = [];
+    entitys.forEach(function(element,index,array){
+        var _myEntity = Puppets.getComponents(element)[0];
+        if(_myEntity.collider.type !== 'player'){
+            for (var i in _myEntity.polygone.lines){
+                othersComponents.push(_myEntity.polygone.lines[i]);
+            } 
+            console.log(_myEntity.polygone.lines);
+        }
+    });
 
+    
+    Puppets.component("others",function(data,entity,undefined){
+        return { lines : data.others};
+    });
+
+    Puppets.addComponent(this.entityNumber,'others',{others : othersComponents});
+    console.log(Puppets.getComponents(this.entityNumber)[0].others);
     this.setEvents();
 };
 
