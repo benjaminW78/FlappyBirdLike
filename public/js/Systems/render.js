@@ -1,7 +1,7 @@
 var Puppets    = require("../libs/puppets");
 var canvasConf = require("../modules/configCanvas");
 
-// puppet System Draw 
+// puppet System Draw
 Puppets.system("draw",function(polygone,render,size){
     if(render.ctx !== undefined)
     {
@@ -25,6 +25,8 @@ Puppets.system("draw",function(polygone,render,size){
             ctx.strokeStyle=strokecolor;
 
         ctx.beginPath();
+        ctx.clearRect(0, 0, 600,400);
+
         // mise en place de l'angle
         // ctx.save();
         // //deplacement vers l'objet par rapport à la camera

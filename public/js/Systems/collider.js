@@ -17,7 +17,7 @@ Puppets.system("collider",function(position,collider,size,others,polygone){
                 _playerLine2x = polygone.lines[i].b.x,
                 _playerLine2y = polygone.lines[i].b.y;
 
-                 for (var p = 0;p<others.lines.length;p++){
+                 for (var p = 0;p<others.lines.length;++p){
                     
                     var _otherLine1x = others.lines[p].a.x,
                         _otherLine1y = others.lines[p].a.y,

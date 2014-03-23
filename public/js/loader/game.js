@@ -8,9 +8,9 @@ require("../puppetsModules/wall");
 require("../Systems/render");
 require("../Systems/collider");
 require("../Systems/polygoneUpdate");
-require("../Systems/cameraFocus");
 var modulePlayer          = require("../puppetsModules/Player");
 require("../puppetsModules/camera");
+require("../Systems/cameraFocus");
 
 
 var Game = {
