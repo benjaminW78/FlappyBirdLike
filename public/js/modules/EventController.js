@@ -39,6 +39,6 @@ var EventsController = function (){ };
                                 return objetEvent;
                             }                               
                         };
-
+var controller = new EventsController();
 // export browserify 
-module.exports = new EventsController();
+module.exports = controller;

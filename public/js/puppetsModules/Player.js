@@ -5,7 +5,7 @@ var basic                 =  require("../modules/basicMethodes");
 
 // component move smooth for player;
 Puppets.component("move",function(data,entity,undefined){
-    return {value:data.value||0, diviseur : data.diviseur || 2,direction : data.direction || 2};
+    return {value:data.value||0, diviseur : data.diviseur || 2,direction : data.direction || 2 ,invertSwitch : false};
 });
 
 Puppets.entity('player',{components : ['position','render','size','speed','move','collider',"polygone"]});
@@ -26,17 +26,32 @@ Puppets.system("move-forward",function(position,speed,move){
             move.value-=0.15/_diviseur;  
         }
         else{
-            if(position.angle==90 || position.angle==-90)
-            {   
+            if(position.angle==90 || position.angle==-90){   
                 speed.value*=-1;
                 move.direction*=-1;
+                move.invertSwitch=false;
             }
 
-            if(Math.sin(position.angle*Math.PI / 180)!==1&&Math.sin(position.angle*Math.PI / 180)!==-1)
-                position.y += _speed*Math.sin(position.angle*Math.PI / 180);
-    
-            position.x += _speed*Math.cos(position.angle*Math.PI / 180);
+            if(position.x>=600){
+                if(_speed>0){
+                    speed.value*=-1;
+                    move.direction*=-1
+                }
+                position.x-=0.25;
+            }
+            else if(position.x<=0){
+                if(_speed<0){
+                    speed.value*=-1;
+                    move.direction*=-1
+                }
+                position.x+=0.25;
+            }
 
+            if(Math.sin(position.angle*Math.PI / 180)<1&&Math.sin(position.angle*Math.PI / 180)>-1)
+                position.y += _speed*Math.sin(position.angle*Math.PI / 180);
+            if((Math.cos(position.angle*Math.PI / 180)<1&&Math.cos(position.angle*Math.PI / 180)>-1))
+                position.x += _speed*Math.cos(position.angle*Math.PI / 180);
+            
             position.angle+= move.direction;
         }
         
@@ -46,7 +61,7 @@ var PlayerController = function (){
 
     var params = { x:canvasConf.domCanvas.width/2, y:256, angle:0, width : 25, height : 25  , shape : "square", ctx : canvasConf.ctx, smoothX:0,smoothY:0,type:"player",lines :{}};
 
-    params.lines = basic.computePolygone(params.x,params.y,params.width,params.height,params.angle);
+    params.lines = basic.computePolygone(params.shape,params.x,params.y,params.width,params.height,params.angle);
 
     this.init(params);
 };
@@ -55,8 +70,8 @@ PlayerController.prototype.init = function(params){
 
     this.entityNumber = Puppets.createEntity('player',{position:{x:params.x, y:params.y , angle : params.angle},
                                                         size     :{w: params.width , h: params.height},
-                                                        render   :{ctx: params.ctx,shape : params.shape},
-                                                        collider :{type:params.type},
+                                                        render   :{ctx: params.ctx},
+                                                        collider :{type:params.type,shape : params.shape},
                                                         polygone :{lines:params.lines}});
     var entitys = Puppets.find('collider');
     var othersComponents = [];
@@ -86,6 +101,17 @@ PlayerController.prototype.setEvents = function(){
     moduleEventController.add("go-forward",function(){  
         var _self = Puppets.getComponents(this.entityNumber)[0];
         _self.move.value +=1; 
+    }.bind(this));
+
+    moduleEventController.add("rebound",function(){ 
+
+        var _self = Puppets.getComponents(this.entityNumber)[0];
+        if(!_self.move.invertSwitch){
+            _self.speed.value *=-1; 
+            _self.move.direction *=-1; 
+            _self.move.invertSwitch = true;     
+        }
+
     }.bind(this));
 };
 

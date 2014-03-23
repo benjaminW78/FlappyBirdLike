@@ -1,6 +1,6 @@
 {
   "name": "FlappybirdLike",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "little game in progress",
   "main": "index.js",
   "scripts": {
