@@ -37,12 +37,12 @@ Puppets.system("draw",function(polygone,render,size){
         // ctx.lineTo(x+width,y+height);
         // ctx.lineTo(x+(width*-1)/2,y+height);
         // ctx.lineTo(x+(width*-1)/2,y+(height*-1)/2);
-
-        // ctx.moveTo(lineTop.a.x,lineTop.a.y);
-        // ctx.lineTo(lineRight.a.x,lineRight.a.y);
-        // ctx.lineTo(lineBottom.b.x,lineBottom.b.y);
-        // ctx.lineTo(lineLeft.b.x,lineLeft.b.y);
-        // ctx.lineTo(lineLeft.a.x,lineLeft.a.y);
+        
+        ctx.moveTo(lineTop.a.x,lineTop.a.y);
+        ctx.lineTo(lineRight.a.x,lineRight.a.y);
+        ctx.lineTo(lineBottom.b.x,lineBottom.b.y);
+        ctx.lineTo(lineLeft.b.x,lineLeft.b.y);
+        ctx.lineTo(lineLeft.a.x,lineLeft.a.y);
 
         // on restaure le canvas a son etat original.
         // ctx.restore();

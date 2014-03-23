@@ -27,8 +27,8 @@ var Game = {
 Game.Inputs.addEvent("keydown", window);
 Game.Inputs.addEvent("touchend", window);
 
-Game.Inputs.setKeyBind("space",{"keydown":function (){Game.eventController.emit("go-forward");}});
-Game.Inputs.setKeyBind("\\",{"touchend":function (){Game.eventController.emit("rebound");}});
+Game.Inputs.setKeyBind(0,{"touchend":function (){Game.eventController.emit("go-forward");}});
+// Game.Inputs.setKeyBind(0,{"touchend":function (){Game.eventController.emit("rebound");}});
 
 // console.log(Game.Inputs.getKeysBind());
 
