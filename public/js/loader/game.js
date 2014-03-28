@@ -3,14 +3,15 @@ var Puppets               = require("../libs/puppets");
 var EasyInputs            = require("../libs/EasyInput");
 var EventController       = require("../modules/EventController");
 var canvasConf            = require("../modules/configCanvas");
-require("../puppetsModules/blocPattern");
+require("../puppetsModules/ennemiPattern1");
+require("../puppetsModules/gate");
 require("../puppetsModules/wall");
 require("../Systems/render");
+require("../Systems/cameraFocus");
 require("../Systems/collider");
-require("../Systems/polygoneUpdate");
 var modulePlayer          = require("../puppetsModules/Player");
 require("../puppetsModules/camera");
-require("../Systems/cameraFocus");
+require("../Systems/polygoneUpdate");
 
 
 var Game = {

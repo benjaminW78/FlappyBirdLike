@@ -32,21 +32,25 @@ server.listen(35729, function (err) {
 
 gulp.task("Rewatch",function(){
 
-    gulp.watch([
-                "./"+pathFromJs+'/js/**/*.js',
-                './views/**/*.html',
-                "./"+pathFromJs+'/css/**/*.css'],
+    gulp.watch(["./"+pathFromJs+'/js/**/*.js'],
         function(){
                     gulp.start('insertVar');
                     gulp.start('lint');
                     gulp.start('browserify');
-                    gulp.start("ConstructCss");
+                })      
+    
+    gulp.watch(['./views/**/*.html'],
+        function(){
                     gulp.start("ConstructHtml");
-                    
-                });      
-    });
-}); 
+                })     
+    
+    gulp.watch(["./"+pathFromJs+'/css/**/*.css'],
+        function(){
+                    gulp.start("ConstructCss");
+                  })      
 
+  }); 
+});
 // Lint Task
 gulp.task('lint', function() {
     return gulp.src(pathFromJs+'/js/**/*.js')
@@ -93,4 +97,3 @@ gulp.task('default', ['Rewatch','insertVar', 'lint','browserify',"ConstructHtml"
       app:"/usr/lib/chromium-browser/chromium-browser",
       url: "http://localhost:8080/"
 }))});
-

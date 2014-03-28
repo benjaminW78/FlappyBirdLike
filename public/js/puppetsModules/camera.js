@@ -25,4 +25,4 @@ Camera.prototype.init = function(params){
 
     Puppets.addComponent(this.entityNumber,"targetCamera",{target : _playerRef});
 };
-module.exports = new Camera(300,250);
+module.exports = new Camera(0,10);

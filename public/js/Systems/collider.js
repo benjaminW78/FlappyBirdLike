@@ -24,16 +24,27 @@ Puppets.system("collider",function(position,collider,size,others,polygone){
                         _otherLine2x = others.lines[p].b.x,
                         _otherLine2y = others.lines[p].b.y;
                         // test if lines are paralles if they are  test =  0.
-                        testParalle=((_playerLine2y - _playerLine1y)* (_otherLine2x - _otherLine1x)) - ((_playerLine2x - _playerLine1x)*(_otherLine2y- _otherLine1y));
+                        testParalle = ((_playerLine2y - _playerLine1y)* (_otherLine2x - _otherLine1x)) - ((_playerLine2x - _playerLine1x)*(_otherLine2y- _otherLine1y));
 
                         var testCrossLineToLineA = (((_playerLine2x-_playerLine1x)*(_otherLine1y- _playerLine1y))-((_playerLine2y-_playerLine1y)*(_otherLine1x- _playerLine1x)))/testParalle;
                         var testCrossLineToLineB = (((_otherLine2x-_otherLine1x) * (_otherLine1y - _playerLine1y))-((_otherLine2y - _otherLine1y) * (_otherLine1x - _playerLine1x))) / testParalle;
+                    
                     if ((testCrossLineToLineA < 0) || (testCrossLineToLineA > 1) || (testCrossLineToLineB < 0) || (testCrossLineToLineB > 1)){
                         // console.log("yolo ca ce croise pas !");
                     }
                     else {
-                        console.log("collision");
-                        eventsController.emit('rebound');
+                        if(others.lines[p].colliderType === "bloc")
+                        {
+                            console.log("collision");
+                            eventsController.emit('rebound');
+                            
+                        }
+                        else if(others.lines[p].colliderType === "gate")
+                        {
+                            eventsController.emit('score++');
+                            console.log("score upgrade");
+
+                        }
                     }                            
                  }
 

@@ -17,7 +17,7 @@ Puppets.component("speed",function(data,entity,undefined){
 });
 
 Puppets.component("collider",function(data,entity,undefined){
-    return { type : data.type || "block",shape : data.shape || ''};
+    return { type : data.type || "block",shape : data.shape || '',entity : data.entity||-1};
 });
 
 Puppets.component("polygone",function(data,entity,undefined){

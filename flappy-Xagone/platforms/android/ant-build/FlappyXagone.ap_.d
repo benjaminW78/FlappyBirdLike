@@ -25,6 +25,7 @@
 /home/ben/workWeb/FlappyBirdLike/flappy-Xagone/platforms/android/assets/www/css/index.css \
 /home/ben/workWeb/FlappyBirdLike/flappy-Xagone/platforms/android/assets/www/test/index.html \
 /home/ben/workWeb/FlappyBirdLike/flappy-Xagone/platforms/android/assets/www/test/sources \
+/home/ben/workWeb/FlappyBirdLike/flappy-Xagone/platforms/android/assets/www/test/sources/songs \
 /home/ben/workWeb/FlappyBirdLike/flappy-Xagone/platforms/android/assets/www/test/sources/js \
 /home/ben/workWeb/FlappyBirdLike/flappy-Xagone/platforms/android/assets/www/test/sources/css \
 /home/ben/workWeb/FlappyBirdLike/flappy-Xagone/platforms/android/assets/www/test/sources/js/main.js \

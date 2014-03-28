@@ -5,24 +5,32 @@ var basic                 =  require("../modules/basicMethodes");
 
 // component move smooth for player;
 Puppets.component("move",function(data,entity,undefined){
-    return {value:data.value||0, diviseur : data.diviseur || 2,direction : data.direction || 2 ,invertSwitch : false};
+    return {value:data.value||0, diviseur : data.diviseur || 2.5,direction : data.direction || 5 ,invertSwitch : false};
 });
 
-Puppets.entity('player',{components : ['position','render','size','speed','move','collider',"polygone"]});
+Puppets.component("score",function(data,entity,undefined){
+    return {value:data.value||0};
+});
+
+Puppets.entity('player',{components : ['position','render','size','speed','move','collider',"polygone","score"]});
+
+var getIdCamera = Puppets.find('targetCamera');
+    camera = Puppets.getComponents(getIdCamera[0])[0];
 
 // system use to move player.
 Puppets.system("move-forward",function(position,speed,move){
         var _speed = speed.value,
         _move      = move.value;
         _diviseur  = move.diviseur;
-       
+
         if(_move>0){
             if(_speed<0)
                 position.x-=_speed*Math.sin(position.angle*Math.PI / 180)*_diviseur;
             else if(_speed>0)
                 position.x+=_speed*Math.sin(position.angle*Math.PI / 180)*_diviseur;
-
+            // camera.position.y -= 3*_diviseur;
             position.y-=3*_diviseur;
+            console.log(3*2);
             move.value-=0.15/_diviseur;  
         }
         else{
@@ -35,14 +43,14 @@ Puppets.system("move-forward",function(position,speed,move){
             if(position.x>=600){
                 if(_speed>0){
                     speed.value*=-1;
-                    move.direction*=-1
+                    move.direction*=-1;
                 }
                 position.x-=0.25;
             }
             else if(position.x<=0){
                 if(_speed<0){
                     speed.value*=-1;
-                    move.direction*=-1
+                    move.direction*=-1;
                 }
                 position.x+=0.25;
             }
@@ -59,7 +67,7 @@ Puppets.system("move-forward",function(position,speed,move){
 
 var PlayerController = function (){
 
-    var params = { x:canvasConf.domCanvas.width/2, y:256, angle:0, width : 25, height : 25  , shape : "square", ctx : canvasConf.ctx, smoothX:0,smoothY:0,type:"player",lines :{}};
+    var params = { x:canvasConf.domCanvas.width/2, y:340, angle:0, width : 25, height : 25  , shape : "square", ctx : canvasConf.ctx, smoothX:0,smoothY:0,type:"player",lines :{}};
 
     params.lines = basic.computePolygone(params.shape,params.x,params.y,params.width,params.height,params.angle);
 
@@ -111,6 +119,14 @@ PlayerController.prototype.setEvents = function(){
             _self.move.direction *=-1; 
             _self.move.invertSwitch = true;     
         }
+
+    }.bind(this));
+
+    moduleEventController.add("score++",function(){ 
+
+        var _self = Puppets.getComponents(this.entityNumber)[0];
+            _self.score.value+=1;   
+            console.log('your score is of ',_self.score.value);  
 
     }.bind(this));
 };
