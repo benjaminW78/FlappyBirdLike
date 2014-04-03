@@ -12,7 +12,10 @@ Puppets.entity('bloc1',{components : ['position','render','speed','size','collid
 // system use to move bloc pattern 1.
 Puppets.system("movebloc1",function(position,speed,blocMove1){
 
-    position.x+=speed.value
+    position.x+=speed.value;
+    if(position.x>=canvasConf.domCanvas.width || position.x<=0){
+        speed.value*=-1;
+    }
 
 },{components : ['position','speed','blocMove1']});
 
@@ -42,5 +45,5 @@ blocFactory.prototype.setEvents = function(){
 
 };
 // 84
-new blocFactory(50,298,45,25,25)
-module.exports = this;
+// new blocFactory(50,298,45,25,25);
+module.exports = blocFactory;

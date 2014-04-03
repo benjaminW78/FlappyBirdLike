@@ -36,7 +36,7 @@ Puppets.system("collider",function(position,collider,size,others,polygone){
                         if(others.lines[p].colliderType === "bloc")
                         {
                             console.log("collision");
-                            eventsController.emit('rebound');
+                            eventsController.emit('gameOver');
                             
                         }
                         else if(others.lines[p].colliderType === "gate")
