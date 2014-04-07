@@ -12,6 +12,7 @@ require("../Systems/collider");
 var modulePlayer          = require("../puppetsModules/Player");
 require("../puppetsModules/camera");
 require("../Systems/polygoneUpdate");
+require("../puppetsModules/ennemiesGenerator");
 
 var Game = {
                 Puppets          : Puppets,
@@ -24,9 +25,12 @@ var Game = {
 
 // add of input controls
 Game.Inputs.addEvent("keydown", window);
-Game.Inputs.addEvent("touchend", window);
+Game.Inputs.addEvent("touchend", Game.canvas);
 
 Game.Inputs.setKeyBind(0,{"touchend":function (){Game.eventController.emit("go-forward");}});
+
+Game.eventController.add('gameOver',function(){window.location=window.location});
+
 // Game.Inputs.setKeyBind(0,{"touchend":function (){Game.eventController.emit("rebound");}});
 
 // console.log(Game.Inputs.getKeysBind());

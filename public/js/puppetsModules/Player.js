@@ -22,7 +22,11 @@ Puppets.system("move-forward",function(position,speed,move){
         var _speed = speed.value,
         _move      = move.value;
         _diviseur  = move.diviseur;
-        if(position.x<580 && position.x>10){
+
+        if(position.x>=canvasConf.domCanvas.width||position.x<=0){
+            moduleEventController.emit('gameOver');
+            return;   
+        }
 
 
             if(_move>0){
@@ -98,6 +102,7 @@ PlayerController.prototype.setEvents = function(){
     moduleEventController.add("go-forward",function(){  
         var _self = Puppets.getComponents(this.entityNumber)[0];
         _self.move.value +=1; 
+        moduleEventController.emit("generateEnemie",_self.position);
     }.bind(this));
 
     moduleEventController.add("rebound",function(){ 

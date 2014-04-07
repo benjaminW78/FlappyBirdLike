@@ -93,7 +93,7 @@ gulp.task('default', ['Rewatch','insertVar', 'lint','browserify',"ConstructHtml"
   // Open Google Chrome @ localhost:8080
   gulp.src('build/index.html')
     .pipe(open("",{
-      // app:"google-chrome",
-      app:"/usr/lib/chromium-browser/chromium-browser",
+      app:"google-chrome",
+      // app:"/usr/lib/chromium-browser/chromium-browser",
       url: "http://localhost:8080/"
 }))});
