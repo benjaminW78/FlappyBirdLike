@@ -35,14 +35,14 @@ Puppets.system("collider",function(position,collider,size,others,polygone){
                     else {
                         if(others.lines[p].colliderType === "bloc")
                         {
-                            console.log("collision");
+                            // console.log("collision");
                             eventsController.emit('rebound');
                             
                         }
                         else if(others.lines[p].colliderType === "gate")
                         {
                             eventsController.emit('score++');
-                            console.log("score upgrade");
+                            // console.log("score upgrade");
 
                         }
                     }                            

@@ -5,7 +5,7 @@ Puppets.component("position",function(data,entity,undefined){
 });
 
 Puppets.component("render",function(data,entity,undefined){
-    return { ctx : data.ctx ,Fillcolor : data.fill || "#22ff33" , Strokecolor : data.stroke || "#22ffff" };
+    return { ctx : data.ctx ,Fillcolor : data.fill || "rgba(0,0,0,0)" , Strokecolor : data.stroke || "#22ffff" };
 });
 
 Puppets.component("size",function(data,entity,undefined){

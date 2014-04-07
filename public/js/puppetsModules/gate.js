@@ -31,5 +31,5 @@ gateFactory.prototype.setEvents = function(){
 
 };
 // 84
-new gateFactory(0,320,0,10000,1);
+new gateFactory(0,-40,0,10000,1);
 module.exports = this;

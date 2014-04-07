@@ -5,14 +5,13 @@ var EventController       = require("../modules/EventController");
 var canvasConf            = require("../modules/configCanvas");
 require("../puppetsModules/ennemiPattern1");
 require("../puppetsModules/gate");
-require("../puppetsModules/wall");
+// require("../puppetsModules/wall");
 require("../Systems/render");
 require("../Systems/cameraFocus");
 require("../Systems/collider");
 var modulePlayer          = require("../puppetsModules/Player");
 require("../puppetsModules/camera");
 require("../Systems/polygoneUpdate");
-
 
 var Game = {
                 Puppets          : Puppets,
@@ -22,7 +21,6 @@ var Game = {
                 playerController : modulePlayer,
                 eventController  : EventController
             };
-
 
 // add of input controls
 Game.Inputs.addEvent("keydown", window);

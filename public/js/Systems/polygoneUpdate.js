@@ -48,13 +48,12 @@ Puppets.system("polygoneUpdate",function(position,size,polygone,collider){
     polygone.lines.lineBottom.b.y = Math.sin(angle*Math.PI / 180)*((x+width/2)-x) + Math.cos(angle*Math.PI / 180)* ((y+height/2)-y)+y;
     }
 
-    if(polygone.lines.lineTop!=undefined&&polygone.lines.lineTop.colliderType==undefined &&
-        polygone.lines.lineLeft!=undefined&&polygone.lines.lineLeft.colliderType==undefined &&
-        polygone.lines.lineRight!=undefined&&polygone.lines.lineRight.colliderType==undefined &&
-        polygone.lines.lineBottom!=undefined&&polygone.lines.lineBottom.colliderType==undefined )
+    if(polygone.lines.lineTop!==undefined&&polygone.lines.lineTop.colliderType===undefined &&
+        polygone.lines.lineLeft!==undefined&&polygone.lines.lineLeft.colliderType===undefined &&
+        polygone.lines.lineRight!==undefined&&polygone.lines.lineRight.colliderType===undefined &&
+        polygone.lines.lineBottom!==undefined&&polygone.lines.lineBottom.colliderType===undefined )
     {   
-        console.log("yoloSWAG OVER 900")
-        polygone.lines.lineTop.colliderType =polygone.lines.lineLeft.colliderType =polygone.lines.lineRight.colliderType =polygone.lines.lineBottom.colliderType = collider.type   
+        polygone.lines.lineTop.colliderType =polygone.lines.lineLeft.colliderType =polygone.lines.lineRight.colliderType =polygone.lines.lineBottom.colliderType = collider.type;   
     }
    // debugger;            
 },{components : ["position","size","polygone","collider"]});
