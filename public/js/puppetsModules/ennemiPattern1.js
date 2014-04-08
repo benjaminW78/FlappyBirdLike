@@ -45,5 +45,5 @@ blocFactory.prototype.setEvents = function(){
 
 };
 // 84
-// new blocFactory(50,298,45,25,25);
+new blocFactory(50,350,45,25,25);
 module.exports = blocFactory;

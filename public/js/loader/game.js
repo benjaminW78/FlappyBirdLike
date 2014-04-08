@@ -13,6 +13,7 @@ var modulePlayer          = require("../puppetsModules/Player");
 require("../puppetsModules/camera");
 require("../Systems/polygoneUpdate");
 require("../puppetsModules/ennemiesGenerator");
+require("../Systems/killModulesPast");
 
 
 var Game = {
@@ -31,7 +32,7 @@ Game.Inputs.addEvent("touchend", Game.canvas);
 
 Game.Inputs.setKeyBind(0,{"touchend":function (){Game.eventController.emit("go-forward");}});
 
-Game.eventController.add('gameOver',function(){window.location=window.location});
+Game.eventController.add('gameOver',function(){window.location=window.location;});
 
 // Game.Inputs.setKeyBind(0,{"touchend":function (){Game.eventController.emit("rebound");}});
 

@@ -33,9 +33,9 @@ Puppets.system("collider",function(position,collider,size,others,polygone){
                         // console.log("yolo ca ce croise pas !");
                     }
                     else {
+                            console.log("collision");
                         if(others.lines[p].colliderType === "bloc")
                         {
-                            console.log("collision");
                             eventsController.emit('gameOver');
                             
                         }
