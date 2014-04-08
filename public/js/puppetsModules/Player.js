@@ -22,56 +22,45 @@ Puppets.system("move-forward",function(position,speed,move){
         var _speed = speed.value,
         _move      = move.value;
         _diviseur  = move.diviseur;
+
         if(position.x>=canvasConf.domCanvas.width||position.x<=0){
             moduleEventController.emit('gameOver');
             return;   
         }
 
-        if(_move>0){
-            if(_speed<0)
-                position.x-=_speed*Math.sin(position.angle*Math.PI / 180)*_diviseur;
-            else if(_speed>0)
-                position.x+=_speed*Math.sin(position.angle*Math.PI / 180)*_diviseur;
-            // camera.position.y -= 3*_diviseur;
-            position.y-=3*_diviseur;
-            console.log(3*2);
-            move.value-=0.15/_diviseur;  
+
+            if(_move>0){
+                if(_speed<0 && (position.x-_speed*Math.sin(position.angle*Math.PI / 180)*_diviseur)>10)
+                    position.x-=_speed*Math.sin(position.angle*Math.PI / 180)*_diviseur;
+                else if(_speed>0 && (position.x+_speed*Math.sin(position.angle*Math.PI / 180)*_diviseur)<580)
+                    position.x+=_speed*Math.sin(position.angle*Math.PI / 180)*_diviseur;
+                // camera.position.y -= 3*_diviseur;
+                position.y-=3*_diviseur;
+                move.value-=0.15/_diviseur;  
+            }
+            else{
+                if((position.angle==90 || position.angle==-90) ){   
+                    speed.value*=-1;
+                    move.direction*=-1;
+                    move.invertSwitch=false;
+                }
+                if(Math.sin(position.angle*Math.PI / 180)<1&&Math.sin(position.angle*Math.PI / 180)>-1 && position.x<580 && position.x<580)
+                    position.y += _speed*Math.sin(position.angle*Math.PI / 180);
+                if((Math.cos(position.angle*Math.PI / 180)<1&&Math.cos(position.angle*Math.PI / 180)>-1 && position.x<580))
+                    position.x += _speed*Math.cos(position.angle*Math.PI / 180);
+                
+                position.angle+= move.direction;
+            }
         }
         else{
-            if(position.angle==90 || position.angle==-90){   
-                speed.value*=-1;
-                move.direction*=-1;
-                move.invertSwitch=false;
-            }
-
-            if(position.x>=600){
-                if(_speed>0){
-                    speed.value*=-1;
-                    move.direction*=-1;
-                }
-                position.x-=0.25;
-            }
-            else if(position.x<=0){
-                if(_speed<0){
-                    speed.value*=-1;
-                    move.direction*=-1;
-                }
-                position.x+=0.25;
-            }
-
-            if(Math.sin(position.angle*Math.PI / 180)<1&&Math.sin(position.angle*Math.PI / 180)>-1)
-                position.y += _speed*Math.sin(position.angle*Math.PI / 180);
-            if((Math.cos(position.angle*Math.PI / 180)<1&&Math.cos(position.angle*Math.PI / 180)>-1))
-                position.x += _speed*Math.cos(position.angle*Math.PI / 180);
-            
-            position.angle+= move.direction;
+            moduleEventController.emit("death")
         }
         
 },{components : ['position','speed','move']});
 
 var PlayerController = function (){
 
-    var params = { x:canvasConf.domCanvas.width/2, y:340, angle:0, width : 25, height : 25  , shape : "square", ctx : canvasConf.ctx, smoothX:0,smoothY:0,type:"player",lines :{}};
+    var params = { x:canvasConf.domCanvas.width/2, y:0, angle:0, width : 25, height : 25  , shape : "square", ctx : canvasConf.ctx, fill :"#ff00ee", smoothX:0,smoothY:0,type:"player",lines :{}};
 
     params.lines = basic.computePolygone(params.shape,params.x,params.y,params.width,params.height,params.angle);
 
@@ -82,7 +71,7 @@ PlayerController.prototype.init = function(params){
 
     this.entityNumber = Puppets.createEntity('player',{position:{x:params.x, y:params.y , angle : params.angle},
                                                         size     :{w: params.width , h: params.height},
-                                                        render   :{ctx: params.ctx},
+                                                        render   :{ctx: params.ctx,fill:params.fill},
                                                         collider :{type:params.type,shape : params.shape},
                                                         polygone :{lines:params.lines}});
     var entitys = Puppets.find('collider');

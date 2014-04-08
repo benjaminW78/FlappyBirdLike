@@ -37,12 +37,11 @@ Puppets.system("collider",function(position,collider,size,others,polygone){
                         if(others.lines[p].colliderType === "bloc")
                         {
                             eventsController.emit('gameOver');
-                            
                         }
                         else if(others.lines[p].colliderType === "gate")
                         {
                             eventsController.emit('score++');
-                            console.log("score upgrade");
+                            // console.log("score upgrade");
 
                         }
                     }                            
