@@ -27,7 +27,9 @@ var Game = {
 // add of input controls
 Game.Inputs.addEvent("keydown", window);
 Game.Inputs.addEvent("touchend", Game.canvas);
+Game.Inputs.addEvent("gamepad", window);
 
+Game.Inputs.setKeyBind("gamepad",function (e){Game.eventController.emit("go-moveAround",e.axes["stick-left-x"],e.axes["stick-left-y"]);});
 Game.Inputs.setKeyBind(0,{"touchend":function (){Game.eventController.emit("go-forward");}});
 
 Game.eventController.add('gameOver',function(){window.location=window.location;});

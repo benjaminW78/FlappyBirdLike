@@ -18,19 +18,49 @@
 *   addEvent(first,second) 2 params necessary    --> first : string of the event who will be add (keydown,keyup,mousemove etc...); 
                                                  --> second : dom object like window or a document.getElementBy of what you want;
     use : for add event listenner on object;
+
 *   removeEvent(first,second) 2 params necessary --> first : string of the event who will be remove (keydown,keyup,mousemove etc...);
                                                  --> second : dom object who had event listenner;
     use : for remove event listenner of an object;
+
 *   setKeyBind(first,second) 2 params necessary  --> first : integer of the key you want to bind with event(s).                                      
                                                  --> second : object of event(s) you want to use and function call by this event: {keypress : function(){}, keydown : functionWhoDoSomething };
     use : for add or edit one key with event(s);    
 
 *   getKeysBind() 
     use : return you object who contain all keys binding and all events call for those keys.
+
 */
+'use strict';
+
 var EasyInput = function()
 {
     var key = {};
+    var gamePadDictionnary = { 
+            buttons:{0:"a",
+                    1:"b",
+                    2:"x",
+                    3:"y",
+                    4:"lb",
+                    5:"rb",
+                    6:"lt",
+                    7:"rt",
+                    8:"select",
+                    9:"start",
+                    10:"leftStickPress",
+                    11:"rightStickPress",
+                    12:"directionnal-pad-top",
+                    13:"directionnal-pad-bottom",
+                    14:"directionnal-pad-left",
+                    15:"directionnal-pad-right",
+                    16:"extra-button"
+                },
+            axes:{ 0: "stick-left-x",
+                1: "stick-left-y",
+                2: "stick-right-x",
+                3: "stick-right-y"}
+        }
+
     var DictonnaryKey =  {
         0: "\\",
         8: "backspace",
@@ -132,7 +162,12 @@ var EasyInput = function()
     };
     EasyInput.prototype.addEvent = function(input , target)
     {   
-        target.addEventListener(input, this.functionCall,false);
+        if(input === "gamepad" && !!navigator.webkitGetGamepads ){
+
+            this.startGamePadLoop(target);
+        }
+        else 
+            target.addEventListener(input, this.functionCall,false);
     };
     EasyInput.prototype.functionCall = function(e)
     {
@@ -147,15 +182,23 @@ var EasyInput = function()
     {
         if(key.hasOwnProperty(submittedKey) === false)
         {
-            if(typeof submittedKey ==='string')
+            if(typeof submittedKey ==='string' && submittedKey!=="gamepad")
                 var submittedKey = this.findInKey(submittedKey);
+            else{
+                key[submittedKey] = object;
+                return;
+            }
 
             key[submittedKey] = object;
         }
         else if(key.hasOwnProperty(submittedKey))
         {  
-            if(typeof submittedKey ==='string')
+            if(typeof submittedKey ==='string' && submittedKey!=="gamepad")
                 var submittedKey = this.findInKey(submittedKey);
+            else{
+                key[submittedKey] = object;
+                return;
+            }
 
             for (var index in object)
                 key[submittedKey][index] = object[index]; 
@@ -176,6 +219,57 @@ var EasyInput = function()
         }
         return index;
     };
-};
+    EasyInput.prototype.startGamePadLoop = function()
+    {
+        var gamePadFrameBefore =[];
+        var currentGamepad = [];
+        var gamepads ;
+        var self = this;
+        
+        function testGamepad (undefined){
+            gamepads = navigator.webkitGetGamepads();
 
+            for (var i=0;i<gamepads.length;i++){
+                   if(gamepads[i]!==undefined )
+                    {
+                        // console.log("YO")
+                        var myGamePad = {buttons:{},axes:{},id:i};
+                        var o;
+
+                        for(var o=0;o < gamepads[i].buttons.length;o++) {
+                            myGamePad.buttons[gamePadDictionnary.buttons[o]] = gamepads[i].buttons[o];        
+                        }
+                        for(var b=0;b < gamepads[i].axes.length;b++) {
+                            if(gamepads[i].axes[b]>0.3 || gamepads[i].axes[b]<-0.3)
+                                myGamePad.axes[gamePadDictionnary.axes[b]] = gamepads[i].axes[b];
+                            else 
+                                myGamePad.axes[gamePadDictionnary.axes[b]] = 0;
+                        }
+
+                        gamePadFrameBefore[i] = currentGamepad[i];
+                        key.gamepad(myGamePad);
+                    }
+            }
+
+
+        }
+
+        var gamepadLoop = setInterval(testGamepad,1000/60)
+
+    };
+    EasyInput.prototype.hashCode = function(string){
+        
+        var hash, i, chr, len;
+
+        if (string.length == 0) return hash;
+        
+        for (i = 0, len = string.length; i < len; i++) {
+            chr   = string.charCodeAt(i);
+            hash  = ((hash << 5) - hash) + chr;
+            hash |= 0; // Convert to 32bit integer
+        }
+        return hash;
+    };
+
+};
 module.exports = EasyInput;

@@ -7,7 +7,6 @@ var EventsController = function (){ };
                             if(this.events[myEvent] === undefined)
                                 this.events[myEvent]=[];
 
-                            
                             this.events[myEvent].push(myFunction);
 
                             return this.events[myEvent].lengt-1;
@@ -16,7 +15,7 @@ var EventsController = function (){ };
     EventsController.prototype.emit = function(){
                             var args = Array.prototype.slice.call(arguments);
                             var eventName = args.shift();
-                            
+                                                        
                             var listeners = this.events[eventName];
 
                             for (var i=0; i < listeners.length; i++) 

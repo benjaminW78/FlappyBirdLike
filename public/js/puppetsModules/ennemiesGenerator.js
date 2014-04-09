@@ -25,5 +25,5 @@ var EnnemieGenerator = function (){
 };
 
 // 84
-new EnnemieGenerator(50,298,45,25,25);
+new EnnemieGenerator();
 module.exports = this;

@@ -1,13 +1,14 @@
 var basicsComponents      = require("../Components/basicsComponents");
 var canvasConf            = require("../modules/configCanvas");
 var basic                 = require("../modules/basicMethodes");
+var moduleEventController = require("../modules/EventController");
 
 // component move smooth for bloc1;
 Puppets.component('blocMove1',function(data,entity,undefined){
     return {type:data.type||0, x : data.x || 2, distance:data.distance ||canvasConf.domCanvas.width};
 });
 
-Puppets.entity('bloc1',{components : ['position','render','speed','size','collider',"polygone","blocMove1"]});
+Puppets.entity('bloc1',{components : ['position','render','speed','size','collider',"polygone"]});
 
 // system use to move bloc pattern 1.
 Puppets.system("movebloc1",function(position,speed,blocMove1){
@@ -37,16 +38,27 @@ blocFactory.prototype.init = function(params){
                                                         render   :{ctx: params.ctx,fill:params.fill},
                                                         collider :{type:params.type,shape : params.shape},
                                                         polygone :{lines:params.lines},
-                                                        blocMove1:{type : "horizontal"},
+                                                        // blocMove1:{type : "horizontal"},
                                                         speed    :{value : 5}});
     // new gateFactory(params.x,params.y,0,10000,1);
+    this.setEvents()
 
 };
 
 blocFactory.prototype.setEvents = function(){
 
+    // console.log(this.entityNumber)
+    moduleEventController.add("go-moveAround",function(x,y){ 
+
+        var TOTO = Puppets.getComponents(this.entityNumber)[0];
+        // console.log(TOTO,Puppets.getComponents(this.entityNumber))
+            TOTO.position.x +=x*2;
+            TOTO.position.y +=y*2;
+            // _self.move.invertSwitch = true;     
+    }.bind(this));
 };
+
 // 84
-new blocFactory(50,350,45,25,25);
+// new blocFactory(50,350,45,25,25);
 module.exports = blocFactory;
 
