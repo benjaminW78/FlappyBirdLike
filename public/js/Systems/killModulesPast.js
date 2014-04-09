@@ -10,12 +10,9 @@ var eventsController = require("../modules/EventController");
 Puppets.system("garbageCollector",function(position,size,collider,polygone,entity){
 
         if(player.position.y!==undefined && collider.type !== player.collider.type){
-                // console.log(collider.type,position.y>player.position.y);
-            if(position.y>player.position.y+300)
+             
+            if(position.y>player.position.y+250)
             {
-                // console.log(position.y,player.position.y)
-                // console.log("je tue "+collider.type);
-                // debugger;
                 Puppets.removeEntity(entity);
             }
         }

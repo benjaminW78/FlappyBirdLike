@@ -13,11 +13,8 @@ Puppets.entity('bloc1',{components : ['position','render','speed','size','collid
 Puppets.system("movebloc1",function(position,speed,blocMove1){
 
     position.x+=speed.value;
-<<<<<<< HEAD
-    if(position.x==590||position.x==10){
-=======
+
     if(position.x>=canvasConf.domCanvas.width || position.x<=0){
->>>>>>> master
         speed.value*=-1;
     }
 
@@ -50,10 +47,6 @@ blocFactory.prototype.setEvents = function(){
 
 };
 // 84
-<<<<<<< HEAD
 new blocFactory(50,350,45,25,25);
 module.exports = blocFactory;
-=======
-// new blocFactory(50,298,45,25,25);
-module.exports = blocFactory;
->>>>>>> cc997c7f7ecc2aa25039aa655f04b127f41c2d01
+

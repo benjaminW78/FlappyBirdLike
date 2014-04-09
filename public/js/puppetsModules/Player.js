@@ -51,10 +51,7 @@ Puppets.system("move-forward",function(position,speed,move){
                 
                 position.angle+= move.direction;
             }
-        }
-        else{
-            moduleEventController.emit("death")
-        }
+     
         
 },{components : ['position','speed','move']});
 
