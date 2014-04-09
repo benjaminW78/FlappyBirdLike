@@ -10,7 +10,7 @@ Puppets.entity('gate',{components : ['position','render','size','collider',"poly
 
 var gateFactory = function (x,y,angle,w,h){
 
-    var params = { x:x, y:y , angle :   angle, width : w, height : h  , shape : "square", ctx : canvasConf.ctx, type:"gate",lines :{},fill :"#ffffff" };
+    var params = { x:x, y:y , angle :   angle, width : w, height : h  , shape : "square", ctx : canvasConf.ctx, type:"gate",lines :{},fill :"rgba(29, 240, 214,0.8)" };
 
     params.lines = basic.computePolygone(params.shape,params.x,params.y,params.width,params.height,params.angle);
     

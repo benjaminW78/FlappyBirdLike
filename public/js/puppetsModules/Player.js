@@ -12,7 +12,7 @@ Puppets.component("score",function(data,entity,undefined){
     return {value:data.value||0};
 });
 
-Puppets.entity('player',{components : ['position','render','size','speed','move','collider',"polygone","score"]});
+Puppets.entity('player',{components : ['position',"imageRender",'render','size','speed','move','collider',"polygone","score"]});
 
 var getIdCamera = Puppets.find('targetCamera');
     camera = Puppets.getComponents(getIdCamera[0])[0];
@@ -57,7 +57,7 @@ Puppets.system("move-forward",function(position,speed,move){
 
 var PlayerController = function (){
 
-    var params = { x:canvasConf.domCanvas.width/2, y:0, angle:0, width : 25, height : 25  , shape : "square", ctx : canvasConf.ctx, fill :"#ff00ee", smoothX:0,smoothY:0,type:"player",lines :{}};
+    var params = { x:canvasConf.domCanvas.width/2, y:0, angle:0,imgAngle : 90,path:"sources/assets/",name:"pac-man.png", width : 50, height : 50  , shape : "square", ctx : canvasConf.ctx, fill :"#ff00ee", smoothX:0,smoothY:0,type:"player",lines :{}};
 
     params.lines = basic.computePolygone(params.shape,params.x,params.y,params.width,params.height,params.angle);
 
@@ -65,10 +65,14 @@ var PlayerController = function (){
 };
 
 PlayerController.prototype.init = function(params){
+    params.image = new Image();
+    params.image.src = params.path+params.name;
+    console.log(params.image)
 
     this.entityNumber = Puppets.createEntity('player',{position:{x:params.x, y:params.y , angle : params.angle},
                                                         size     :{w: params.width , h: params.height},
-                                                        render   :{ctx: params.ctx,fill:params.fill},
+                                                        imageRender   :{path : params.path , name : params.name, image : params.image,imgAngle : params.imgAngle},
+                                                        render   :{ctx: params.ctx},
                                                         collider :{type:params.type,shape : params.shape},
                                                         polygone :{lines:params.lines}});
     var entitys = Puppets.find('collider');
@@ -101,7 +105,25 @@ PlayerController.prototype.setEvents = function(){
         _self.move.value +=1; 
         moduleEventController.emit("generateEnemie",_self.position);
     }.bind(this));
+    
+    moduleEventController.add("generateEnemie",function(){
+        var entitys = Puppets.find('collider');
+        var othersComponents = [];
 
+        entitys.forEach(function(element,index,array){
+            
+            var _myEntity = Puppets.getComponents(element)[0];
+            if(_myEntity.collider.type !== 'player'){
+                for (var i in _myEntity.polygone.lines){
+                    othersComponents.push(_myEntity.polygone.lines[i]);
+                } 
+            }
+        
+        });
+
+        Puppets.getComponents(this.entityNumber)[0].others.lines = othersComponents;
+
+    }.bind(this));
     moduleEventController.add("rebound",function(){ 
 
         var _self = Puppets.getComponents(this.entityNumber)[0];

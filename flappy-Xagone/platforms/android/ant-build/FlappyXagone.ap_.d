@@ -27,7 +27,12 @@
 /home/ben/workWeb/FlappyBirdLike/flappy-Xagone/platforms/android/assets/www/test/sources \
 /home/ben/workWeb/FlappyBirdLike/flappy-Xagone/platforms/android/assets/www/test/sources/songs \
 /home/ben/workWeb/FlappyBirdLike/flappy-Xagone/platforms/android/assets/www/test/sources/js \
+/home/ben/workWeb/FlappyBirdLike/flappy-Xagone/platforms/android/assets/www/test/sources/assets \
 /home/ben/workWeb/FlappyBirdLike/flappy-Xagone/platforms/android/assets/www/test/sources/css \
 /home/ben/workWeb/FlappyBirdLike/flappy-Xagone/platforms/android/assets/www/test/sources/js/main.js \
+/home/ben/workWeb/FlappyBirdLike/flappy-Xagone/platforms/android/assets/www/test/sources/assets/gosht-1.png \
+/home/ben/workWeb/FlappyBirdLike/flappy-Xagone/platforms/android/assets/www/test/sources/assets/gosht-2.png \
+/home/ben/workWeb/FlappyBirdLike/flappy-Xagone/platforms/android/assets/www/test/sources/assets/gosht-0.png \
+/home/ben/workWeb/FlappyBirdLike/flappy-Xagone/platforms/android/assets/www/test/sources/assets/pac-man.png \
 /home/ben/workWeb/FlappyBirdLike/flappy-Xagone/platforms/android/assets/www/test/sources/css/index.css \
 /home/ben/workWeb/FlappyBirdLike/flappy-Xagone/platforms/android/ant-build/AndroidManifest.xml \

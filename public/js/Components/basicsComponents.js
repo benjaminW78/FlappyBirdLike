@@ -5,7 +5,7 @@ Puppets.component("position",function(data,entity,undefined){
 });
 
 Puppets.component("render",function(data,entity,undefined){
-    return { ctx : data.ctx ,Fillcolor : data.fill || "rgba(0,0,0,0)" , Strokecolor : data.stroke || "#22ffff" };
+    return { ctx : data.ctx ,Fillcolor : data.fill || "rgba(0,0,0,0)" , Strokecolor : data.stroke || "rgba(0,0,0,0)" };
 });
 
 Puppets.component("size",function(data,entity,undefined){
@@ -18,6 +18,10 @@ Puppets.component("speed",function(data,entity,undefined){
 
 Puppets.component("collider",function(data,entity,undefined){
     return { type : data.type || "block",shape : data.shape || '',entity : data.entity||-1};
+});
+
+Puppets.component("imageRender",function(data,entity,undefined){
+    return { path : data.path || "./assets", name : data.name||"", image : data.image,angle : data.imgAngle};
 });
 
 Puppets.component("polygone",function(data,entity,undefined){
