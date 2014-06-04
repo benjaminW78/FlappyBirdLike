@@ -23,4 +23,4 @@ wallFactory.prototype.init = function(params){
                                                         polygone :{lines:params.lines}});
 };
 
-module.exports = new wallFactory(300,400,600,-1000); 
+module.exports = new wallFactory(canvasConf.width/2,canvasConf.height/2,canvasConf.width/2,-1000); 

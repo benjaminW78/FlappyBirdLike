@@ -7,10 +7,10 @@ Puppets.entity('camera',{components : ['position']});
 
 var Camera = function (x,y){
 
-    var params = { x:x, y:y,angle:0,width:600,height:400};
+    var params = { x:x, y:y,angle:0,width:400,height:600};
     
     params.lines = basic.computePolygone(params.shape,params.x,params.y,params.width,params.height,params.angle);
-    
+    console.log(this)   
     this.init(params);
 };
 
@@ -28,4 +28,4 @@ Camera.prototype.init = function(params){
 
     Puppets.addComponent(this.entityNumber,"targetCamera",{target : _playerRef});
 };
-module.exports = new Camera(300,-300);
+module.exports = Camera(300,-300);

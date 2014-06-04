@@ -11,7 +11,7 @@ Puppets.system("garbageCollector",function(position,size,collider,polygone,entit
 
         if(player.position.y!==undefined && collider.type !== player.collider.type){
              
-            if(position.y>player.position.y+250)
+            if(position.y>player.position.y+1000)
             {
                 Puppets.removeEntity(entity);
             }

@@ -57,7 +57,7 @@ Puppets.system("move-forward",function(position,speed,move){
 
 var PlayerController = function (){
 
-    var params = { x:canvasConf.domCanvas.width/2, y:0, angle:0,imgAngle : 90,path:"sources/assets/",name:"pac-man.png", width : 50, height : 50  , shape : "square", ctx : canvasConf.ctx, fill :"#ff00ee", smoothX:0,smoothY:0,type:"player",lines :{}};
+    var params = { x:canvasConf.domCanvas.width/2, y:0, angle:0,imgAngle : 90,path:"",name:"pac-man.png", width : 50, height : 50  , shape : "square", ctx : canvasConf.ctx, fill :"#ff00ee", smoothX:0,smoothY:0,type:"player",lines :{}};
 
     params.lines = basic.computePolygone(params.shape,params.x,params.y,params.width,params.height,params.angle);
 
@@ -67,7 +67,7 @@ var PlayerController = function (){
 PlayerController.prototype.init = function(params){
     params.image = new Image();
     params.image.src = params.path+params.name;
-    console.log(params.image)
+
 
     this.entityNumber = Puppets.createEntity('player',{position:{x:params.x, y:params.y , angle : params.angle},
                                                         size     :{w: params.width , h: params.height},
@@ -146,4 +146,4 @@ PlayerController.prototype.setEvents = function(){
 
 
 // browserify export
-module.exports = new PlayerController();
+module.exports = PlayerController;

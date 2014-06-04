@@ -23,7 +23,7 @@ Puppets.system("movebloc1",function(position,speed,blocMove1){
 
 var blocFactory = function (x,y,angle,w,h,speed){
 
-    var params = { x:x, y:y , angle :   angle, width : w, height : h ,imgAngle : 45,path:"sources/assets/",name:"gosht-" , shape : "square", speed:speed ,ctx : canvasConf.ctx, type:"bloc",lines :{},fill :"#ffffff" };
+    var params = { x:x, y:y , angle :   angle, width : w, height : h ,imgAngle : 45,path:"",name:"gosht-" , shape : "square", speed:speed ,ctx : canvasConf.ctx, type:"bloc",lines :{},fill :"#ffffff" };
 
     params.lines = basic.computePolygone(params.shape,params.x,params.y,params.width,params.height,params.angle);
     

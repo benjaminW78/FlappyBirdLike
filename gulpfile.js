@@ -63,7 +63,7 @@ gulp.task('browserify', function() {
     return gulp.src(pathFromJs+'/js/main.js')
         .pipe(browserify({
           insertGlobals : false,debug : !gulp.env.production}))
-        .pipe(gulp.dest('./build/sources/js'))
+        .pipe(gulp.dest('./build/'))
         .pipe(livereload(server));
         gulp.start('Rewatch');
 });
@@ -88,12 +88,18 @@ gulp.task('ConstructCss',function(){
     .pipe(livereload(server));
 });
 
+gulp.task('ConstructAssets',function(){
+   return gulp.src(pathFromJs+"/assets/**/*.png")
+    .pipe(gulp.dest('./build/'))
+    .pipe(livereload(server));
+});
 // Default Task
-gulp.task('default', ['Rewatch','insertVar', 'lint','browserify',"ConstructHtml","ConstructCss"],function(){
+gulp.task('default', ['Rewatch','insertVar', 'lint','browserify',"ConstructHtml"],function(){
   // Open Google Chrome @ localhost:8080
+  gulp.start("ConstructAssets");
   gulp.src('build/index.html')
     .pipe(open("",{
-      app:"google-chrome",
-      // app:"/usr/lib/chromium-browser/chromium-browser",
+      // app:"google-chrome",
+      app:"/usr/lib/chromium-browser/chromium-browser",
       url: "http://localhost:8080/"
 }))});

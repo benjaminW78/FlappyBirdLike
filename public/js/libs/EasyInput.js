@@ -54,7 +54,7 @@ var EasyInput = function()
                 1: "stick-left-y",
                 2: "stick-right-x",
                 3: "stick-right-y"}
-        }
+        };
 
     var DictonnaryKey =  {
         0: "\\",
@@ -159,7 +159,7 @@ var EasyInput = function()
     {   
         if(input === "gamepad" && !!navigator.webkitGetGamepads ){
             this.startGamePadLoop(target);
-            return
+            return;
         }
         else 
             target.addEventListener(input, this.functionCall,false);
@@ -230,14 +230,14 @@ var EasyInput = function()
                                         }
 
 
-                                    },1000/60)
+                                    },1000/60);
 
     };
     EasyInput.prototype.hashCode = function(string){
         
         var hash = 0, i, chr, len;
         
-        if (this.length == 0) return hash;
+        if (this.length === 0) return hash;
         
         for (i = 0, len = this.length; i < len; i++) {
             chr   = this.charCodeAt(i);
