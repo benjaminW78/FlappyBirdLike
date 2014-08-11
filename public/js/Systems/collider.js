@@ -1,8 +1,8 @@
-var Puppets    = require("../libs/puppets");
+// var Puppets    = require("../libs/puppets");
 var canvasConf = require("../modules/configCanvas");
 var eventsController = require("../modules/EventController");
 
-Puppets.system("collider",function(position,collider,size,others,polygone){
+Game.Puppets.system("collider",function(position,collider,size,others,polygone){
 
 
     var x           = position.x,

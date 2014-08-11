@@ -7,7 +7,7 @@ function start(){
     var game = require('./loader/game');
     
     var Game = game();
-    console.log("fuckers")
+    // console.log("fuckers")
     Game.eventController.add('gameOver',function(){start();});
 
     var requestAnimFrame = require('./libs/requestAnimationFrame');

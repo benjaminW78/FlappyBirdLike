@@ -1,9 +1,8 @@
-var Puppets    = require("../libs/puppets");
 var canvasConf = require("../modules/configCanvas");
 
 // puppet System Draw
     
-Puppets.system("draw",function(polygone,render,size){
+Game.Puppets.system("draw",function(polygone,render,size){
     if(render.ctx !== undefined)
     {
         var ctx         = render.ctx,
@@ -55,10 +54,10 @@ Puppets.system("draw",function(polygone,render,size){
     }   
 },{components : ['polygone','render','size']});
 
-var getIdCamera = Puppets.find('targetCamera');
-    camera = Puppets.getComponents(getIdCamera[0])[0];
+var getIdCamera = Game.Puppets.find('targetCamera');
+    camera = Game.Puppets.getComponents(getIdCamera[0])[0];
 
-Puppets.system("draw1",function(position,render,imageRender,size){
+Game.Puppets.system("draw1",function(position,render,imageRender,size){
         // console.log(imageRender.image);
         // debugger;
     if(render.ctx !== undefined)

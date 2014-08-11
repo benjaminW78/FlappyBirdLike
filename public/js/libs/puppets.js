@@ -405,6 +405,8 @@ Puppets = function (config)
             }
 
             var id = this.length[component];
+            // console.log(this.list,component,id);
+            // debugger;
             this.list[component][id] = this.models[component].constructor(constructor || {}, entity);
 
             if(enabled !== undefined)
@@ -606,4 +608,4 @@ Puppets.prototype.systemList = function(list)
     return this.Systems.order;
 };
 
-module.exports = new Puppets();
+module.exports = Puppets;

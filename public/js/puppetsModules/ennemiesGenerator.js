@@ -1,4 +1,3 @@
-var basicsComponents      = require("../Components/basicsComponents");
 var canvasConf            = require("../modules/configCanvas");
 var basic                 = require("../modules/basicMethodes");
 var moduleEventController = require("../modules/EventController");

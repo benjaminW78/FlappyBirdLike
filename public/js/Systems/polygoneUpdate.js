@@ -1,13 +1,12 @@
-var Puppets    = require("../libs/puppets");
 var canvasConf = require("../modules/configCanvas");
 
 
-var getIdCamera = Puppets.find('targetCamera');
-    camera = Puppets.getComponents(getIdCamera[0])[0];
+var getIdCamera = Game.Puppets.find('targetCamera');
+    camera = Game.Puppets.getComponents(getIdCamera[0])[0];
 
 
 // puppet System Draw 
-Puppets.system("polygoneUpdate",function(position,size,polygone,collider){
+Game.Puppets.system("polygoneUpdate",function(position,size,polygone,collider){
         var x           = position.x,
             y           = position.y-camera.position.y,
             angle       = position.angle,

@@ -1,0 +1,14 @@
+{
+  "name": "EasyInput.js",
+  "homepage": "https://github.com/benjaminW78/EasyInput",
+  "_release": "930bc5b6a1",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "930bc5b6a1576fe989889090de4dc34d4dfc3b6d"
+  },
+  "_source": "git://github.com/benjaminW78/EasyInput.git",
+  "_target": "*",
+  "_originalSource": "EasyInput",
+  "_direct": true
+}

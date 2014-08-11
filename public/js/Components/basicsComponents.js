@@ -1,4 +1,5 @@
 // Basic components for entities !
+console.log(Game.Puppets)
 
 Puppets.component("position",function(data,entity,undefined){
     return { angle : data.angle || 0 , x : data.x || 0  , y : data.y || 0 };
